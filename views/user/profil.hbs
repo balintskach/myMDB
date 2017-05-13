@@ -1,0 +1,27 @@
+<h1>haha</h1>
+
+
+
+
+
+<script type="text/javascript">
+  $(function() {
+
+    var URL = 'https://mymdbbackend.herokuapp.com/users/movie/list/all';
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", URL, true);
+    xhr.setRequestHeader("content-type", "application/json");
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == XMLHttpRequest.DONE) {
+        // ide kapod a cuccot
+        console.log(xhr.responseText);
+      }
+    }
+
+    xhr.send();
+
+
+  });
+</script>

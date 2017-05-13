@@ -1,16 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-
-
-
 router.get('/signup', function(req, res, next) {
-    
+
     res.render('./user/signup', { title: 'Express' });
 });
 
 router.get('/signin', function(req, res, next) {
-    
+
     res.render('./user/signin', { title: 'Express' });
 });
 
@@ -19,6 +16,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/profil', function(req, res, next) {
+
+    res.render('./user/profil', { title: 'Express' });
+});
 
 
 module.exports = router;

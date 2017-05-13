@@ -1,23 +1,71 @@
 <div class="row">
-      <div class="col-md-4 col-md-offset-4">
-        <h1>Sign Up</h1>
-      {{#if hasErrors }}
-          <div class="alert alert-danger">
-            {{# each messages}}
-            <p>{{this}}</p>
-            {{/each}}
-          </div>
-      {{/if}}
-        <form action="/user/signup" method="post">
-          <div class="form-group">
-            <label for="email">E-mail</label>
-            <input type="text" name="email" id="email" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="form-control">
-          </div>
-          <button type="submit" class="btn btn--primarry"> Sign Up</button>
-        </form>
+  <div class="col-md-4 col-md-offset-4">
+    <h1>Sign Up</h1>
+    {{#if hasErrors }}
+      <div class="alert alert-danger">
+        {{# each messages}}
+          <p>{{this}}</p>
+          {{/each}}
       </div>
+    {{/if}}
+
+    <div class="form-group">
+      <label for="nev">Név</label>
+      <input type="text" name="nev" id="nev">
+    </div>
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input type="text" name="email" id="email">
+    </div>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username">
+    </div>
+    <div class="form-group">
+      <label for="password1">Password 1</label>
+      <input type="password" name="password1" id="password1">
+    </div>
+    <div class="form-group">
+      <label for="password2">Password 2</label>
+      <input type="password" name="password2" id="password2">
+    </div>
+    <button id="signUp" class="btn btn--primarry"> Sign Up</button>
+  </div>
 </div>
+
+
+<script type="text/javascript">
+  $(function() {
+
+    $('#signUp').on('click', function() {
+      console.log('in');
+      var nev = $('#nev').val();
+      var email = $('#email').val();
+      var username = $('#username').val();
+      var password1 = $('#password1').val();
+      var password2 = $('#password2').val();
+      var URL = 'https://mymdbbackend.herokuapp.com/users/register';
+      var data = {
+        'name': nev,
+        'email': email,
+        'username': username,
+        'password': password1,
+        'password2': password2
+      };
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", URL, true);
+      xhr.withCredentials = true;
+      xhr.setRequestHeader("content-type", "application/json");
+
+      xhr.addEventListener("readystatechange", function() {
+        if (this.readyState === 4) {
+          window.location.href = '/signin';
+        }
+      });
+
+      xhr.send(JSON.stringify(data));
+
+    });
+  });
+</script>
